@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        n = sc.nextInt();
+        int[][] matrix = new int[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                matrix[i][j] = sc.nextInt();
+
+        triangleSums(n, matrix);
+        sc.close();
+    }
+
+    public static void triangleSums(int n, int[][] arr) {
+        // your code here
+		// Traversing in the upper triangke
+		int sumupper=0,sumlow=0;
+		for(int gap=0;gap<arr.length;gap++)
+			{
+				for(int i=0,j=gap;j<arr.length;j++,i++)
+					{
+						sumupper+=arr[i][j];
+					}
+				for(int i=gap,j=0;i<arr.length;i++,j++)
+					{
+						sumlow+=arr[i][j];
+					}
+			}
+		System.out.print(sumupper);
+		System.out.print(" "+sumlow);
+		
+
+		// Traversing in the lower triangle
+		// for(int gap=0;)
+    }
+}
