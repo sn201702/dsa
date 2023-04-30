@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+
+class Main{
+    public static void main(String args[])throws IOException{
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+            int r = sc.nextInt();
+            int c = sc.nextInt();
+            int matrix[][] = new int[r][c];
+            for(int i = 0; i < r; i++){
+                for(int j = 0; j < c; j++)
+                 matrix[i][j] = sc.nextInt();
+            }
+
+            ArrayList<Integer> ans = spirallyTraverse(matrix, r, c);
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+            System.out.println();
+        }
+    }
+
+    public static ArrayList<Integer> spirallyTraverse(int matrix[][], int n, int m){
+        // your code here
+
+		int minr=0,minc=0,maxr=n-1,maxc=m-1;
+		int tne=n*m,count=0; 
+		//Left Wall
+		ArrayList<Integer> result=new ArrayList<Integer>();
+		while(count<tne){
+		for(int i=minr,j=minc;i<=maxr && count<tne;i++)
+			{
+				// System.out.print(matrix[i][j]);
+				result.add(matrix[i][j]);
+				count++;
+			}
+		minr++;
+		// Bottom wall
+		for(int i=maxr,j=minc+1;j<=maxc && count<tne;j++)
+			{
+				// System.out.print(matrix[i][j]);
+				result.add(matrix[i][j]);
+				count++;
+			}
+		maxc--;
+		// Right wall
+		for(int i=maxr-1,j=maxc;i>=minr && count<tne;i--)
+			{
+				// System.out.print(matrix[i][j]);
+				result.add(matrix[i][j]);
+				count++;
+			}
+		maxr--;
+		// Top wall
+		for(int i=minr,j=maxc-1;j>=minc+1 && count<tne;j--){
+			// System.out.println(matrix[i][j]);
+			result.add(matrix[i][j]);
+			count++;
+		}
+		minc++;
+		}
+		return result;
+	}
+}
