@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] mat = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++)
+                mat[i][j] = sc.nextInt();
+        }
+        sc.close();
+        ArrayList<Integer> res = diagonalTraversal(mat, n);
+        for (Integer x : res)
+            System.out.print(x + " ");
+    }
+
+    public static ArrayList<Integer> diagonalTraversal(int[][] mat, int n) {
+        // your code here
+		// ArrayList<Integer>result=new ArrayList<Integer>();
+		ArrayList<Integer>ans=new ArrayList<>();
+		for(int gap=n-1;gap>=0;gap--)
+			{
+				int row=0,column=gap;
+				for(int i=0;(i+row<n)&&(i+column<n);i++)
+					{
+						ans.add(mat[i+row][i+column]);
+					}
+			}
+
+		// Lower Triangle
+		for(int gap=1;gap<n;gap++)
+			{
+				int column=0, row=gap;
+				for(int i=0;(i+row<n)&&(i+column<n);i++)
+					{
+						ans.add(mat[i+row][i+column]);
+					}
+				
+			}
+		return ans;
+        
+    }
+}
